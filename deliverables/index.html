@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="snowflake-source" content="cortex-agent-authored" />
+  <title>Deliverables — NetComply AI</title>
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body data-page="deliverables">
+<main>
+  <section>
+    <div class="wrap">
+      <div class="kicker">03 / Deliverables</div>
+      <h1>What we ship.</h1>
+      <p class="lead">The end result is a per-device compliance report, plus the fix commands exported as a script to review and apply. The tool never pushes changes to a device.</p>
+      <ul class="check">
+        <li><span>01</span><div><strong>Source code</strong><small>GitHub repository: core/, app/, rules/, templates/, tests</small></div></li>
+        <li><span>02</span><div><strong>README</strong><small>Setup instructions, LLM modes, how to run the demo</small></div></li>
+        <li><span>03</span><div><strong>Architecture document</strong><small>Maximum 2 pages: pipeline, schema, training loop, privacy model</small></div></li>
+        <li><span>04</span><div><strong>Working app</strong><small>Upload, dashboard, device detail, training, PDF report</small></div></li>
+        <li><span>05</span><div><strong>Sample configs</strong><small>Cisco IOS, Juniper, MikroTik (the “unseen vendor”)</small></div></li>
+        <li><span>06</span><div><strong>Sample outputs</strong><small>Per-device PDF report plus a fix script</small></div></li>
+      </ul>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="kicker">Scope</div>
+      <h2>Now, next, and limits.</h2>
+      <div class="grid">
+        <div class="card"><h3>Now</h3><ul class="plain"><li>Cisco IOS, Juniper, MikroTik</li><li>10 checks, CIS mapping</li><li>Training loop with re-audit</li><li>Dashboard and per-device PDF</li></ul></div>
+        <div class="card"><h3>Next</h3><ul class="plain"><li>AWS / Azure security groups, SONiC</li><li>NIST, STIG, ISO rule sets</li><li>Live collection via Netmiko / NAPALM</li><li>Screenshot ingestion for GUI-only firewalls</li></ul></div>
+        <div class="card"><h3>Honest limits</h3><ul class="plain"><li>Fixes are suggestions, so test first</li><li>Coverage grows as admins train it</li><li>Read-only: never touches live devices</li><li>Framework control IDs pending verification</li></ul></div>
+      </div>
+      <div class="pager"><a class="btn" href="/architecture/">← Architecture</a><a class="btn primary" href="/upload/">Start the demo →</a></div>
+    </div>
+  </section>
+</main>
+<script src="/assets/samples.js"></script>
+<script src="/assets/engine.js"></script>
+<script src="/assets/app.js"></script>
+</body>
+</html>

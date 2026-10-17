@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="snowflake-source" content="cortex-agent-authored" />
+  <title>Architecture — NetComply AI</title>
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body data-page="architecture">
+<main>
+  <section>
+    <div class="wrap">
+      <div class="kicker">02 / Architecture</div>
+      <h1>Separate understanding from judging.</h1>
+      <p class="lead">Interpreting vendor syntax is messy, so Gemma 4 does it. The verdict has to be consistent and auditable, so deterministic rules decide it. Orange marks where Gemma 4 is involved. Everything else is deterministic.</p>
+      <div class="arch">
+        <div class="pipe">
+          <div class="stage"><div class="n">1</div><div class="body"><h3>Ingest &amp; preprocess</h3><p>Single or bulk upload. Detect vendor and OS, split into blocks, <strong>redact secrets</strong> (hashes, keys, SNMP strings).</p></div></div>
+          <div class="arrow">↓</div>
+          <div class="stage ai"><div class="n">2</div><div class="body"><h3>Normalize <span class="tag">Gemma 4</span></h3><p>(a) learned-mapping lookup → (b) Gemma returns <code>field, value, source_line, confidence</code> → (c) low-confidence lines to the review queue. Evidence that isn't in the input is rejected.</p></div></div>
+          <div class="arrow">↓</div>
+          <div class="stage"><div class="n">3</div><div class="body"><h3>Security Baseline Model</h3><p>One vendor-neutral JSON per device. <code>null</code> = not found, <code>false</code> = explicitly disabled.</p></div></div>
+          <div class="arrow">↓</div>
+          <div class="stage"><div class="n">4</div><div class="body"><h3>Compliance engine</h3><p>YAML rules with a closed set of operators. Pass / Fail / Unknown plus severity and framework references.</p></div></div>
+          <div class="arrow">↓</div>
+          <div class="stage ai"><div class="n">5</div><div class="body"><h3>Remediation <span class="tag">Gemma 4</span></h3><p>Vendor templates first, Gemma for gaps. CLI in the device's own syntax, labeled “Suggested. Review and test before applying.”</p></div></div>
+          <div class="arrow">↓</div>
+          <div class="stage"><div class="n">6</div><div class="body"><h3>PDF report</h3><p>One per device. Same input, same report.</p></div></div>
+        </div>
+        <div style="display:grid; gap:22px">
+          <div class="loop">
+            <h3>↺ Training loop</h3>
+            <ol>
+              <li>Unrecognized lines land in the review queue</li>
+              <li>Gemma suggests a control (shown as a suggestion)</li>
+              <li>Admin accepts, edits or skips</li>
+              <li>Mapping saved to the store</li>
+              <li>Re-audit: step 2a now matches it directly</li>
+            </ol>
+          </div>
+          <div>
+            <div class="out">Security Baseline Model (excerpt)</div>
+<pre>{
+  "device":     { "vendor": "cisco",
+                  "hostname": "core-sw" },
+  "management": { "telnet_enabled": true,
+                  "ssh_version": 2 },
+  "logging":    { "syslog_servers": null }
+}</pre>
+            <div class="out">Every value carries evidence</div>
+<pre>{ "value": true,
+  "source_line": "transport input telnet ssh",
+  "line_number": 27,
+  "confidence": 0.95,
+  "origin": "llm" }</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="kicker">Why Gemma 4</div>
+      <h2>The right model for configs.</h2>
+      <div class="grid">
+        <div class="card"><div class="num hot">01</div><h3>Reasoning</h3><p>Interprets syntax it hasn't seen before and maps it to security controls.</p></div>
+        <div class="card"><div class="num hot">02</div><h3>Agentic workflows</h3><p>Suggests mappings and drafts vendor-specific fixes inside a validate-and-retry loop.</p></div>
+        <div class="card"><div class="num hot">03</div><h3>Open weights</h3><p>Can run on a laptop or an on-prem server, so configs with IPs and topology stay in the building.</p></div>
+        <div class="card"><div class="num hot">04</div><h3>One switch</h3><p>Mock, local, LAN or hosted. Changing the backend is a <code>.env</code> edit, with no code changes.</p></div>
+      </div>
+      <div class="pager"><a class="btn" href="/problem/">← Problem</a><a class="btn primary" href="/deliverables/">Deliverables →</a></div>
+    </div>
+  </section>
+</main>
+<script src="/assets/samples.js"></script>
+<script src="/assets/engine.js"></script>
+<script src="/assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="snowflake-source" content="cortex-agent-authored" />
+  <title>Problem — NetComply AI</title>
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body data-page="problem">
+<main>
+  <section>
+    <div class="wrap">
+      <div class="kicker">01 / Problem</div>
+      <h1>Misconfiguration is the open door.</h1>
+      <p class="lead">Network devices guard every byte of data, and they are also the most common point of misconfiguration. Frameworks like CIS, NIST SP 800-53, DISA STIG and ISO/IEC 27001 say what “hardened” means. Proving it across a mixed fleet is the hard part.</p>
+      <div class="grid">
+        <div class="card"><div class="num">A</div><h3>Every vendor speaks differently</h3><p>Proprietary CLI syntax, different hierarchies and OS versions. A “secure password” setting on a Cisco switch looks nothing like the same setting on a Juniper firewall.</p></div>
+        <div class="card"><div class="num">B</div><h3>New hardware breaks old parsers</h3><p>White-box SONiC, cloud security groups, new firmware. Hard-coded command libraries go out of date as soon as something new arrives.</p></div>
+        <div class="card"><div class="num">C</div><h3>Audits are slow or locked in</h3><p>Manual checklist reviews, or expensive suites tied to one vendor. Hybrid networks have no single source of truth.</p></div>
+      </div>
+      <div class="vendors">
+        <div><h3>Cisco IOS</h3><pre>line vty 0 4
+ transport input ssh
+ip ssh version 2</pre></div>
+        <div><h3>Juniper SRX</h3><pre>delete system services telnet
+set system services ssh
+  protocol-version v2</pre></div>
+        <div><h3>Palo Alto</h3><pre>set deviceconfig system
+  service disable-telnet yes</pre></div>
+        <div><h3>MikroTik</h3><pre>/ip service disable telnet
+/ip ssh set strong-crypto=yes</pre></div>
+      </div>
+      <p class="muted small mono" style="margin-top:16px">Four vendors, one rule: disable Telnet, use SSH.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="kicker">What's needed</div>
+      <h2>An AI-augmented, vendor-agnostic compliance engine.</h2>
+      <div class="grid">
+        <div class="card"><h3>Normalize</h3><p>Map any config into one vendor-neutral Security Baseline Model.</p></div>
+        <div class="card"><h3>Check deviations</h3><p>Compare that model against the chosen framework, for example SSH version must be 2.</p></div>
+        <div class="card"><h3>Adapt</h3><p>When it meets unknown syntax, an admin teaches it in a low-code screen, with no code redeploy.</p></div>
+        <div class="card"><h3>Report</h3><p>One PDF per device: identity, Pass/Fail with severity, and device-specific fix commands.</p></div>
+      </div>
+      <div class="pager"><a class="btn" href="/">← Home</a><a class="btn primary" href="/architecture/">Architecture →</a></div>
+    </div>
+  </section>
+</main>
+<script src="/assets/samples.js"></script>
+<script src="/assets/engine.js"></script>
+<script src="/assets/app.js"></script>
+</body>
+</html>

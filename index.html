@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="snowflake-source" content="cortex-agent-authored" />
+  <title>NetComply AI — Vendor-Agnostic Network Compliance</title>
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body data-page="home">
+<main>
+  <header class="hero">
+    <div class="wrap">
+      <div class="kicker">Best Use of Gemma 4</div>
+      <h1>Any vendor.<br>Any config.<br><mark>One truth.</mark></h1>
+      <p class="lead">NetComply AI reads configuration files from any firewall, router or switch, translates them into one vendor-neutral model, and checks them against security frameworks, with the evidence line behind every verdict.</p>
+      <div class="row">
+        <a class="btn primary" href="/upload/">Start the demo →</a>
+        <a class="btn" href="/problem/">Read the problem</a>
+      </div>
+      <div class="stamp"><div>LLM UNDERSTANDS</div><div>RULES JUDGE</div><div>EVIDENCE PROVES</div></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="kicker">How to demo</div>
+      <h2>Five steps, about two minutes.</h2>
+      <p class="lead">The demo runs in your browser on the built-in demo engine, so no model or internet is needed. Your configs never leave the page.</p>
+      <ol class="howto">
+        <li><div><strong>Upload</strong><small>Click “Load 3 sample configs” (Cisco, Juniper, MikroTik) or drop your own. Keep CIS selected, then Run audit.</small></div><a class="btn sm" href="/upload/">Open</a></li>
+        <li><div><strong>Dashboard</strong><small>See a score per device. MikroTik is the “unseen vendor”, so most of its checks are Unknown.</small></div><a class="btn sm" href="/dashboard/">Open</a></li>
+        <li><div><strong>Device</strong><small>Open core-sw: Pass / Fail / Unknown per control, the exact config line as evidence, and fix commands.</small></div><a class="btn sm" href="/device/">Open</a></li>
+        <li><div><strong>Training</strong><small>Teach the system MikroTik: accept or edit each suggestion, then Save &amp; Re-audit and watch Unknown drop.</small></div><a class="btn sm" href="/training/">Open</a></li>
+        <li><div><strong>Report</strong><small>Download the per-device PDF and the fix script.</small></div><a class="btn sm" href="/report/">Open</a></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="kicker">Explore</div>
+      <h2>Learn more.</h2>
+      <div class="tiles">
+        <a class="tile" href="/problem/"><div class="num">01</div><h3>PROBLEM</h3><p>Why multi-vendor compliance is hard, with a side-by-side look at four vendors' syntax.</p></a>
+        <a class="tile" href="/architecture/"><div class="num">02</div><h3>ARCHITECTURE</h3><p>The six-stage pipeline, the training loop, and why Gemma 4.</p></a>
+        <a class="tile" href="/deliverables/"><div class="num">03</div><h3>DELIVERABLES</h3><p>What we ship, what's in scope, and the honest limits.</p></a>
+        <a class="tile go" href="/upload/"><div class="num">→</div><h3>LIVE DEMO</h3><p>Upload configs and get real results.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="/assets/samples.js"></script>
+<script src="/assets/engine.js"></script>
+<script src="/assets/app.js"></script>
+</body>
+</html>
