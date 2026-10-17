@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Run tests
+        run: LLM_BACKEND=mock OFFLINE=1 pytest -q
+
+      - name: Fail if secrets or real configs are tracked
+        run: |
+          if git ls-files --error-unmatch .env >/dev/null 2>&1; then
+            echo "ERROR: .env is tracked in git" >&2
+            exit 1
+          fi
+          if git ls-files --error-unmatch real_configs/ >/dev/null 2>&1; then
+            echo "ERROR: real_configs/ is tracked in git" >&2
+            exit 1
+          fi

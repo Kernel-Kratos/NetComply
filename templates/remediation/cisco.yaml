@@ -1,0 +1,53 @@
+# templates/remediation/cisco.yaml
+# Remediation commands for Cisco IOS, keyed by rule remediation id.
+# Commands marked # TODO(verify) are not confirmed for this OS version.
+CIS-MGMT-01:
+  commands:
+    - "no ip telnet"
+  source: template
+
+CIS-MGMT-02:
+  commands:
+    - "ip ssh version 2"
+  source: template
+
+CIS-MGMT-03:
+  commands:
+    - "no ip http server"
+  source: template
+
+CIS-SNMP-01:
+  commands:
+    - "no snmp-server community PUBLIC_COMMUNITY_RO  # TODO(verify): confirm exact community name"
+  source: template
+
+CIS-LOGGING-01:
+  commands:
+    - "logging host <SYSLOG_IP>  # TODO(verify): replace with actual syslog IP"
+  source: template
+
+CIS-TIME-01:
+  commands:
+    - "ntp server <NTP_IP>  # TODO(verify): replace with actual NTP IP"
+  source: template
+
+CIS-MGMT-04:
+  commands:
+    - "line vty 0 4"
+    - "exec-timeout 5  # TODO(verify): confirm mode context"
+  source: template
+
+CIS-MGMT-05:
+  commands:
+    - "banner login # AUTHORIZED ACCESS ONLY #  # TODO(verify): confirm banner syntax"
+  source: template
+
+CIS-AUTH-01:
+  commands:
+    - "security passwords minimum-length 8  # TODO(verify): confirm command syntax"
+  source: template
+
+CIS-AUTH-02:
+  commands:
+    - "service password-encryption"
+  source: template

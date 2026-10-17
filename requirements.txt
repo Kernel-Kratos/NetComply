@@ -1,0 +1,17 @@
+# Owner: P1. Others: ask P1, or add a line under your own heading only.
+
+# --- core (P1) ---
+pydantic>=2.0
+pyyaml
+python-dotenv
+pytest
+ruff
+
+# --- normalization & LLM (P2) ---
+requests
+
+# --- frontend (P4) ---
+streamlit
+
+# --- reports (P5) ---
+reportlab

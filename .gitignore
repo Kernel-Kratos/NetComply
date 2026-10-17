@@ -1,0 +1,24 @@
+# secrets and local config (each person has their own .env)
+.env
+.streamlit/secrets.toml
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# per-device state (shared demo state lives in data/seed_mappings.json)
+data/*.db
+data/*.sqlite
+reports_out/
+
+# os / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# NEVER commit real network configs. Only sanitized files in samples/
+real_configs/

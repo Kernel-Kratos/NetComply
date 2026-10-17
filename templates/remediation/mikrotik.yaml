@@ -1,0 +1,52 @@
+# templates/remediation/mikrotik.yaml
+# Remediation commands for MikroTik RouterOS, keyed by rule remediation id.
+# Commands marked # TODO(verify) are not confirmed for this OS version.
+CIS-MGMT-01:
+  commands:
+    - "/ip service disable telnet  # TODO(verify): confirm service name"
+  source: template
+
+CIS-MGMT-02:
+  commands:
+    - "/ip service set ssh protocol-version=2  # TODO(verify): confirm parameter"
+  source: template
+
+CIS-MGMT-03:
+  commands:
+    - "/ip service set www disabled=yes"
+  source: template
+
+CIS-SNMP-01:
+  commands:
+    - "/snmp set enabled=no community=FAKE_COMMUNITY_2024  # TODO(verify): confirm syntax"
+  source: template
+
+CIS-LOGGING-01:
+  commands:
+    - "/system logging add action=memory  # TODO(verify): confirm syslog host syntax"
+  source: template
+
+CIS-TIME-01:
+  commands:
+    - "/system ntp client set enabled=yes primary-ntp=<NTP_IP>  # TODO(verify): replace with actual NTP IP"
+  source: template
+
+CIS-MGMT-04:
+  commands:
+    - "/system clock set time-zone-name=UTC  # TODO(verify): not idle timeout; no direct equivalent"
+  source: template
+
+CIS-MGMT-05:
+  commands:
+    - "/system note set show-at-login=yes  # TODO(verify): not a login banner; closest equivalent"
+  source: template
+
+CIS-AUTH-01:
+  commands:
+    - "/user set admin password-min-length=8  # TODO(verify): confirm parameter exists"
+  source: template
+
+CIS-AUTH-02:
+  commands:
+    - "# TODO(verify): RouterOS stores passwords hashed; no equivalent to service password-encryption"
+  source: template

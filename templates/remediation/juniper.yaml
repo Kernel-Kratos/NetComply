@@ -1,0 +1,52 @@
+# templates/remediation/juniper.yaml
+# Remediation commands for Juniper Junos, keyed by rule remediation id.
+# Commands marked # TODO(verify) are not confirmed for this OS version.
+CIS-MGMT-01:
+  commands:
+    - "set system services telnet disable  # TODO(verify): confirm telnet service name"
+  source: template
+
+CIS-MGMT-02:
+  commands:
+    - "set system services ssh protocol-version v2"
+  source: template
+
+CIS-MGMT-03:
+  commands:
+    - "set system services http disable"
+  source: template
+
+CIS-SNMP-01:
+  commands:
+    - "delete snmp community PUBLIC_COMMUNITY_RO  # TODO(verify): confirm exact community name"
+  source: template
+
+CIS-LOGGING-01:
+  commands:
+    - "set system syslog host <SYSLOG_IP>  # TODO(verify): replace with actual syslog IP"
+  source: template
+
+CIS-TIME-01:
+  commands:
+    - "set system ntp server <NTP_IP>  # TODO(verify): replace with actual NTP IP"
+  source: template
+
+CIS-MGMT-04:
+  commands:
+    - "set system login idle-timeout 5  # TODO(verify): confirm idle-timeout syntax"
+  source: template
+
+CIS-MGMT-05:
+  commands:
+    - "set system login message \"AUTHORIZED ACCESS ONLY\"  # TODO(verify): confirm message syntax"
+  source: template
+
+CIS-AUTH-01:
+  commands:
+    - "set system login password minimum-length 8  # TODO(verify): confirm syntax"
+  source: template
+
+CIS-AUTH-02:
+  commands:
+    - "set system services ssh ciphers disable-weak  # TODO(verify): confirm cipher syntax"
+  source: template

@@ -1,0 +1,28 @@
+# Replace @p1 .. @p5 with real GitHub usernames.
+/core/contracts.py          @p1
+/core/service.py            @p1
+/core/schema.py             @p1
+/core/compliance.py         @p1
+/requirements.txt           @p1
+/.github/                   @p1
+
+/core/ingest.py             @p2
+/core/redact.py             @p2
+/core/normalize.py          @p2
+/core/mappings.py           @p2
+/core/llm/                  @p2
+/data/                      @p2
+/scripts/                   @p2
+
+/rules/                     @p3
+/templates/                 @p3
+/samples/                   @p3
+/core/remediation.py        @p3
+/tests/golden/              @p3
+
+/app/                       @p4
+
+/core/report.py             @p5
+/docs/                      @p5
+/README.md                  @p5
+/tests/test_e2e.py          @p5

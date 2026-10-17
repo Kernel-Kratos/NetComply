@@ -1,0 +1,100 @@
+# rules/cis.yaml - CIS benchmark rules for NetComply AI
+#
+# Fields with NO rule and why:
+# - management.ssh_enabled: covered implicitly by management.ssh_version; no separate rule needed.
+# - management.https_enabled: out of initial scope (AGENTS.md §5: ~10-12 checks).
+# - authentication.aaa_enabled: out of initial scope.
+# - logging.admin_logging: covered implicitly by logging.syslog_servers rule.
+# - crypto.weak_ciphers_enabled: out of initial scope.
+# - device.*: populated by core/ingest.py (P2), not by rules.
+#
+# CIS control IDs are not verified; using "TODO-verify" placeholders.
+# TODO-verify all CIS control numbers before production use.
+
+- id: CIS-MGMT-01
+  title: Telnet must be disabled
+  frameworks: {CIS: "TODO-verify", NIST: "AC-17"}
+  field: management.telnet_enabled
+  op: eq
+  value: false
+  severity: high
+  remediation: CIS-MGMT-01
+
+- id: CIS-MGMT-02
+  title: SSH must use version 2
+  frameworks: {CIS: "TODO-verify"}
+  field: management.ssh_version
+  op: eq
+  value: 2
+  severity: high
+  remediation: CIS-MGMT-02
+
+- id: CIS-MGMT-03
+  title: HTTP management server must be disabled
+  frameworks: {CIS: "TODO-verify"}
+  field: management.http_server_enabled
+  op: eq
+  value: false
+  severity: high
+  remediation: CIS-MGMT-03
+
+- id: CIS-SNMP-01
+  title: SNMP default community must be disabled
+  frameworks: {CIS: "TODO-verify"}
+  field: snmp.default_community
+  op: eq
+  value: false
+  severity: high
+  remediation: CIS-SNMP-01
+
+- id: CIS-LOGGING-01
+  title: Syslog server must be configured
+  frameworks: {CIS: "TODO-verify"}
+  field: logging.syslog_servers
+  op: exists
+  severity: medium
+  remediation: CIS-LOGGING-01
+
+- id: CIS-TIME-01
+  title: NTP server must be configured
+  frameworks: {CIS: "TODO-verify"}
+  field: time.ntp_servers
+  op: exists
+  severity: medium
+  remediation: CIS-TIME-01
+
+- id: CIS-MGMT-04
+  title: Idle timeout must be at least 5 minutes
+  frameworks: {CIS: "TODO-verify"}
+  field: management.idle_timeout_min
+  op: gte
+  value: 5
+  severity: medium
+  remediation: CIS-MGMT-04
+
+- id: CIS-MGMT-05
+  title: Login banner must be configured
+  frameworks: {CIS: "TODO-verify"}
+  field: banner.login_banner_set
+  op: eq
+  value: true
+  severity: medium
+  remediation: CIS-MGMT-05
+
+- id: CIS-AUTH-01
+  title: Password minimum length must be at least 8
+  frameworks: {CIS: "TODO-verify", NIST: "IA-5"}
+  field: authentication.password_min_length
+  op: gte
+  value: 8
+  severity: high
+  remediation: CIS-AUTH-01
+
+- id: CIS-AUTH-02
+  title: Password encryption must be enabled
+  frameworks: {CIS: "TODO-verify"}
+  field: authentication.password_encryption
+  op: eq
+  value: true
+  severity: medium
+  remediation: CIS-AUTH-02
